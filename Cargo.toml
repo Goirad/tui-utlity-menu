@@ -1,5 +1,5 @@
 [package]
-name = "tui-menu"
+name = "tui-utility-menu"
 version = "0.1.0"
 edition = "2021"
 

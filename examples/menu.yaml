@@ -1,0 +1,21 @@
+title: Menu Name
+message: Quickly do stuff on your system
+entries:
+- message: Website shortcuts
+  hotkey: w
+  action: !SubMenu
+    title: Websites
+    message: Jump to websites in a new window
+    entries:
+    - message: Google
+      action: !Terminal WEBSITE_GOOGLE
+    - message: Github
+      action: !Terminal WEBSITE_GITHUB
+- message: Jump to Rust issue
+  hotkey: i
+  action: !Prompt
+    prompt: "<issue number>:"
+    prefix: "RUST_TICKET_"
+- message: Open crates.io
+  action: !Terminal WEBSITE_CRATES_IO
+  hotkey: c

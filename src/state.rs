@@ -1,6 +1,8 @@
-use crossterm::{cursor, style, terminal, ExecutableCommand, QueueableCommand, Result};
 use std::io::Write;
+use std::path::Path;
 use std::time::Instant;
+
+use crossterm::{cursor, style, terminal, ExecutableCommand, QueueableCommand, Result};
 
 use crate::menu::{Menu, MenuAction, MenuStack};
 
@@ -15,10 +17,10 @@ pub struct State {
 }
 
 impl State {
-    pub fn init<F: AsRef<str>>(file: F) -> Self {
+    pub fn init(file: &Path) -> Self {
         // Load the file
         let start = Instant::now();
-        let model = std::fs::read_to_string(file.as_ref()).expect("failed to read menu file");
+        let model = std::fs::read_to_string(file).expect("failed to read menu file");
         let load_time_reading = start.elapsed().as_micros();
 
         // Parse the file
@@ -76,6 +78,8 @@ impl State {
         match action {
             MenuAction::Terminal(message) => {
                 terminal::disable_raw_mode()?;
+                out.execute(cursor::Show)?;
+                out.execute(cursor::EnableBlinking)?;
                 println!("{}", message);
                 out.flush()?;
                 std::process::exit(0);
@@ -85,8 +89,6 @@ impl State {
                 self.draw()?;
             }
             MenuAction::Prompt(prompt) => {
-                terminal::disable_raw_mode()?;
-
                 // Draw the prompt
                 out.execute(cursor::MoveTo(2, 17))?;
                 out.execute(style::Print(&prompt.prompt))?;
