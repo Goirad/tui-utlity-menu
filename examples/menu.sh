@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-arg=$(target/release/tui-menu "$1")
+arg=$(tui-utility-menu "$1")
 
 case "$arg" in
     RUST_TICKET_*)
