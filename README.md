@@ -13,6 +13,41 @@ bindsym $mod+u exec alacritty --class "i3-floating" -e ~/.config/scripts/menu.sh
 
 Check `examples/menu.sh` and `examples/menu.yaml` for some example files.
 
+# Examples
+This is the top level of the example menu:
+```
+
+  Menu Name
+
+  Quickly do stuff on your system
+
+  (w) - [M] - Website shortcuts
+  (i) -     - Jump to Rust issue
+  (c) -     - Open crates.io
+
+```
+After hitting the `i` key:
+```
+
+  Menu Name
+
+  Quickly do stuff on your system
+
+  (w) - [M] - Website shortcuts
+  (i) -     - Jump to Rust issue
+  (c) -     - Open crates.io
+
+  <issue number>:
+  1234
+
+```
+On hitting enter, this echos `RUST_TICKET_1234`, and the `menu.sh` script will
+then open firefox at `https://github.com/rust-lang/rust/issues/1234`.
+
+Of course through the glue script you can do anything you want on your machine,
+from rebooting to opening up a program to launching 15 terminals ssh'ing into 15
+different hosts.
+
 # Setup
 
 1. Install the binary:
