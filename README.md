@@ -85,7 +85,9 @@ entries:
 ```
 ## Actions
 ### Submenu
-Use this to define a submenu, for example to group related actions.
+Use this to define a submenu, for example to group related actions. These
+entries are marked with a `[M]` in the parent menu, to remind you that it's a
+submenu.
 ```yaml
 action: !SubMenu
   title: The menu title
